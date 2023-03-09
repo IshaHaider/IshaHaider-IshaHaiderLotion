@@ -51,10 +51,10 @@ export default function Root() {
 
       <main className="flex-grow flex">
         <aside className="notes-sidebar w-72 min-w-[18rem] flex flex-col border-b-[1px] border-b-gray-300">
-          <div className="flex justify-between px-4">
-            <h2 className="font-semibold py-2 text-2xl">Notes</h2>
+          <div className="flex justify-between">
+            <h2 className="font-semibold py-2 px-4 text-2xl">Notes</h2>
             <Link to={"/new"}>
-              <button className="font-bold py-2 w-10 text-2xl hover:bg-red-400 hover:text-white">
+              <button className="font-bold py-2 w-14 text-2xl hover:bg-red-400 hover:text-white">
                 +
               </button>
             </Link>
