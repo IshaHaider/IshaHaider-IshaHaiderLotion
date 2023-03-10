@@ -4,13 +4,13 @@ import { Form, Link, useSubmit } from "react-router-dom";
 import { formatDate } from "../utils";
 
 export function Layout({ note, isEdit }) {
-  const isNewNote = !note && !isEdit;
-  const isViewNote = note && !isEdit;
-  const showSaveButton = isNewNote || isEdit;
-  const showForm = isNewNote || isEdit;
+  const isNewNote = !note && !isEdit; //isNewNote=true if the note doesn't exist and its not on editing mode 
+  const isViewNote = note && !isEdit; //isViewNote=true if note exists and not on editing mode
+  const showSaveButton = isNewNote || isEdit; //showSaveButton=true if either creating new note or on editing mode
+  const showForm = isNewNote || isEdit; //showForm=true at same conditions as showSaveButton
   let submit = useSubmit();
 
-  const [value, setValue] = useState(note ? note.content : "");
+  const [value, setValue] = useState(note ? note.content : ""); //set value as contents of note if it exists otherwise empty string 
 
   const formatDate2 = (today) => {
     //example initial format: Wed Mar 08 2023 21:09:39 GMT-0700 (Mountain Standard Time)

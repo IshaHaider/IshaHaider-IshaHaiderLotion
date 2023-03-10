@@ -1,7 +1,9 @@
 import "./App.css";
 import "react-quill/dist/quill.snow.css";
-import Root, { loader as rootLoader } from "./routes/root";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// pages
+import Root, { loader as rootLoader } from "./routes/root";
 import NewNote, { action as newNoteAction } from "./routes/new";
 import Notes, {
   loader as noteLoader,
@@ -13,7 +15,7 @@ import NoteEdit, {
 } from "./routes/edit";
 import IndexPage from "./routes";
 
-let router = createBrowserRouter([
+let router = createBrowserRouter([ //router: array of route objects.
   {
     path: "/",
     element: <Root />,
@@ -24,16 +26,16 @@ let router = createBrowserRouter([
         element: <IndexPage />,
       },
       {
-        path: "new",
-        element: <NewNote />,
+        path: "new", 
+        element: <NewNote />, 
         action: newNoteAction,
       },
       {
-        path: "note/:noteId",
-        element: <Notes />,
-        loader: noteLoader,
-        action: noteAction,
-        errorElement: <h2>Note not found</h2>,
+        path: "note/:noteId", //URL pattern for the route
+        element: <Notes />, //React component to be rendered when that URL is visited
+        loader: noteLoader, //load data for the component (server)
+        action: noteAction, //update the state of the component (client)
+        errorElement: <h2>Note not found</h2>, //render if an error occurs
       },
       {
         path: "note/:noteId/edit",
@@ -45,11 +47,14 @@ let router = createBrowserRouter([
     ],
   },
 ]);
+ 
+// <RouterProvider> component: from the react-router-dom library - provides the routing functionality for the application. 
+// is passed a router object that is created using the createBrowserRouter function from the same library.
 
 function App() {
   return (
     <div className="App flex flex-col min-h-screen">
-      <RouterProvider router={router} />
+      <RouterProvider router={router} /> 
     </div>
   );
 }

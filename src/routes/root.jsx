@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useLoaderData, Link, Outlet, useLocation } from "react-router-dom";
 import { Card } from "../components/Card";
 import { getNotes } from "../notes";
@@ -14,7 +14,7 @@ export default function Root() {
   const onMenuClick = () => {
     document.getElementsByTagName("body")[0].classList.toggle("minimized");
   };
-
+  
   return (
     <Fragment>
       <header className="flex border-t-4 border-t-red-400 border-b-[1px] border-b-gray-300">
@@ -59,9 +59,14 @@ export default function Root() {
               </button>
             </Link>
           </div>
+          {(notes === [] || notes.length === 0 || (!notes)) && (
+            <span className="text-l text-gray-500 border-t-[1px] border-t-gray-300 p-4">
+              <i>No Note Yet</i>
+            </span>
+          )}
           <section className="border-t-gray-300 border-t-[1px]">
             {location.pathname === "/new" && (
-              <Card title="Untitled" date={new Date()} content={""} isActive={true} />
+              <Card title="Untitled" date={new Date()} content={""} isActive={true}/>
             )}
             {notes.map((note) => (
               <Link key={note.id} to={`/note/${note.id}`}>
